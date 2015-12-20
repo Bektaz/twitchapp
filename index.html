@@ -1,0 +1,49 @@
+<!DOCTYPE>
+
+<html ng-app='twitchApp'>
+	<head>
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="angularcss.css">
+		<script src="https://code.angularjs.org/1.4.8/angular.min.js"></script>
+        <script src="https://code.angularjs.org/1.4.8/angular-resource.min.js"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+    <!--main view for twitchApp module-->	
+    <div ng-app='twitchApp' class='container-fluid main'>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-4 col-xs-4 col-xs-offset-4 text-center">
+                <h1>FreeCodeCamp</h1>
+                <h2>Twitch.tv App</h2>        
+            </div>    
+        </div>
+        <!--maincontroller-->
+        <div ng-controller='maincontroller'>
+            <div class="row contentdiv">
+                <div class="col-md-3 col-md-offset-4 col-xs-4 col-xs-offset-4" style="background: #BAEEFF; border-radius: 3%;">
+                    <!--search row-->
+                    <div class="row well-sm">
+                        <div class="col-md-8 col-md-offset-2 col-xs-8 col-xs-offset-2">
+                            <div class="form-group has-feedback">
+                                <!--here ng-model is used to bind the data which will be watched and compared 
+against users' names in angularjs file-->
+                                <input type="text" class="form-control" placeholder="Search"  ng-model='searchword' />
+                                <i class="glyphicon glyphicon-search form-control-feedback"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <!--here ng-repeat used to loop through userlist array and add divs equal to array length,
+also ng-if directive used to make the content visible/invisible depending on search result in angularjs-->
+                    <div class="row" style="border-top: 1px solid #8A848C;" ng-repeat='elem in userlist' ng-if='elem.isVisible===true'>
+                        <div class="col-md-2 usersdiv" >
+                            <img class="img-responsive img-circle" style='width: 30px; height: 30px;' src={{elem.logourl}}>
+                        </div>
+                        <div class="col-md-10"><a target="_blank" style='text-decoration:none;color:inherit' href={{elem.profileurl}}> {{elem.name}}<p>{{elem.status}}</p></a></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src='angularjs.js'></script>
+	</body>
+</html>
